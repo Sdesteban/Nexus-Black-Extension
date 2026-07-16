@@ -1,0 +1,672 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nexus Black | El Futuro del Estudio en UCV</title>
+    <style>
+        /* ================= VARIABLES Y RESET ================= */
+        :root {
+            --bg-cream: #F9F6F0; 
+            --bg-white: #FFFFFF; 
+            --halo-green: #5D7052;
+            --halo-dark: #3B4636;
+            --halo-cyan: #4FD1C5;
+            --text-dark: #1A1F16;
+            --text-muted: #5D7052;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(79, 209, 197, 0.3);
+            --shadow-soft: 0 15px 35px rgba(0, 0, 0, 0.05);
+            --shadow-glow: 0 10px 40px rgba(79, 209, 197, 0.3);
+            
+            /* Colores de UI interna Nexus Black */
+            --ui-user-bubble: #D5E2D0;
+            --ui-ia-bubble: #FFFFFF;
+        }
+
+        * {
+            margin: 0; padding: 0; box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background-color: var(--bg-cream);
+            color: var(--text-dark);
+            overflow-x: hidden;
+        }
+
+        /* ================= FONDOS ANIMADOS ================= */
+        .bg-animated {
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+            z-index: -1; overflow: hidden; pointer-events: none;
+        }
+        .blob {
+            position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.4;
+            animation: moveBlob 15s infinite alternate;
+        }
+        .blob-1 { width: 400px; height: 400px; background: var(--halo-cyan); top: -100px; left: -100px; }
+        .blob-2 { width: 500px; height: 500px; background: var(--halo-green); bottom: -150px; right: -100px; animation-delay: -5s; }
+        
+        @keyframes moveBlob {
+            0% { transform: translate(0, 0) scale(1); }
+            100% { transform: translate(100px, 100px) scale(1.2); }
+        }
+
+        /* ================= NAVEGACIÓN ================= */
+        nav {
+            position: fixed; top: 0; width: 100%; padding: 20px 50px;
+            display: flex; justify-content: space-between; align-items: center;
+            background: rgba(249, 246, 240, 0.8); backdrop-filter: blur(10px);
+            z-index: 100; border-bottom: 1px solid rgba(93, 112, 82, 0.1);
+            animation: slideDownNav 0.8s ease-out; 
+        }
+        @keyframes slideDownNav { from { transform: translateY(-100%); } to { transform: translateY(0); } }
+
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.5rem; color: var(--halo-dark); }
+        .nav-logo img { height: 40px; }
+        .btn-nav {
+            background: var(--halo-green); color: white; padding: 10px 25px;
+            border-radius: 30px; text-decoration: none; font-weight: bold;
+            transition: 0.3s; box-shadow: 0 4px 15px rgba(93, 112, 82, 0.3);
+        }
+        .btn-nav:hover { background: var(--halo-cyan); color: var(--halo-dark); transform: translateY(-2px); }
+
+        /* ================= HERO SECTION ================= */
+        .hero {
+            min-height: 100vh; display: flex; flex-direction: column; justify-content: center;
+            align-items: center; text-align: center; padding: 120px 20px 50px;
+        }
+        .hero-badge {
+            background: rgba(79, 209, 197, 0.2); color: var(--halo-dark);
+            padding: 8px 20px; border-radius: 30px; font-weight: bold; margin-bottom: 20px;
+            border: 1px solid var(--halo-cyan);
+            animation: fadeDown 1s ease-out;
+        }
+        .hero h1 {
+            font-size: 4.5rem; line-height: 1.1; margin-bottom: 20px; color: var(--halo-dark);
+            animation: fadeUp 1s ease-out 0.2s both;
+        }
+        .hero h1 span {
+            background: linear-gradient(45deg, var(--halo-green), var(--halo-cyan));
+            -webkit-background-clip: text; color: transparent;
+        }
+        .hero p {
+            font-size: 1.5rem; color: var(--text-muted); max-width: 700px; margin-bottom: 40px;
+            animation: fadeUp 1s ease-out 0.4s both;
+        }
+        .hero-logos {
+            display: flex; gap: 20px; justify-content: center; align-items: center;
+            margin-bottom: 40px; animation: fadeUp 1s ease-out 0.6s both;
+        }
+        
+        .hero-logos img { height: 40px; filter: grayscale(100%) opacity(0.6); transition: 0.3s; animation: pulseLogo 3s infinite alternate; }
+        .hero-logos img:hover { filter: grayscale(0%) opacity(1); transform: scale(1.1); }
+        @keyframes pulseLogo { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
+
+        .btn-hero {
+            background: linear-gradient(45deg, var(--halo-cyan), var(--halo-green));
+            color: var(--bg-white); padding: 18px 50px; font-size: 1.2rem;
+            border-radius: 40px; text-decoration: none; font-weight: bold;
+            box-shadow: var(--shadow-glow); transition: 0.3s;
+            animation: pulseGlow 2s infinite, fadeUp 1s ease-out 0.8s both;
+            display: inline-block; position: relative; overflow: hidden;
+        }
+        
+        .btn-hero::after {
+            content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+            background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.3) 50%, rgba(255,255,255,0) 100%);
+            transform: rotate(45deg); animation: shimmer 3s infinite;
+        }
+        .btn-hero:hover { transform: scale(1.05); color: var(--halo-dark); }
+
+        @keyframes shimmer { 0% { transform: translateX(-100%) rotate(45deg); } 100% { transform: translateX(100%) rotate(45deg); } }
+        @keyframes pulseGlow { 0% { box-shadow: 0 0 0 0 rgba(79, 209, 197, 0.4); } 70% { box-shadow: 0 0 0 20px rgba(79, 209, 197, 0); } 100% { box-shadow: 0 0 0 0 rgba(79, 209, 197, 0); } }
+        @keyframes fadeUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
+        @keyframes fadeDown { from { opacity: 0; transform: translateY(-30px); } to { opacity: 1; transform: translateY(0); } }
+
+        /* ================= MOCKUP BROWSER BASE ================= */
+        .mockup-browser {
+            background: var(--bg-white); border-radius: 12px; overflow: hidden;
+            box-shadow: var(--shadow-soft); border: 1px solid rgba(0,0,0,0.1); width: 100%; position: relative;
+        }
+        .browser-header {
+            background: #EADFCD; padding: 12px; display: flex; gap: 8px;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+        .dot { width: 12px; height: 12px; border-radius: 50%; background: #D1D8CE; }
+        .dot:nth-child(1) { background: #FA0A10; } .dot:nth-child(2) { background: #F1C40F; } .dot:nth-child(3) { background: #4AD63A; }
+
+        /* ================= MOCKUP PRINCIPAL (HERO) ================= */
+        .hero-mockup-wrapper {
+            margin: -50px auto 100px; width: 90%; max-width: 1000px;
+            position: relative; perspective: 1000px;
+            animation: fadeUp 1s ease-out 1s both; z-index: 10;
+        }
+        .hero-mockup-wrapper .mockup-browser {
+            transform: rotateX(5deg); transition: transform 0.5s; box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+        }
+        .hero-mockup-wrapper .mockup-browser:hover { transform: rotateX(0deg); }
+        .hero-mockup-wrapper .browser-content {
+            height: 550px; background: url('https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-4.0.3&auto=format&fit=crop&w=1200&q=80') center/cover;
+            position: relative; display: flex; justify-content: flex-end; align-items: flex-end; padding: 20px;
+        }
+        
+        .nexus-mockup-panel {
+            width: 350px; height: 500px; background: var(--bg-cream); border-radius: 12px; box-shadow: var(--shadow-glow);
+            border: 2px solid var(--halo-cyan); display: flex; flex-direction: column; animation: floatMockup 4s ease-in-out infinite; overflow:hidden;
+        }
+        @keyframes floatMockup { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        /* ================= SHOWCASE (Z-PATTERN) ================= */
+        .showcase-section { padding: 100px 20px; max-width: 1200px; margin: 0 auto; }
+        .section-title { text-align: center; font-size: 3rem; color: var(--halo-dark); margin-bottom: 10px; }
+        .section-subtitle { text-align: center; font-size: 1.2rem; color: var(--text-muted); margin-bottom: 80px; }
+        
+        .showcase-row {
+            display: flex; align-items: center; justify-content: space-between; gap: 50px; margin-bottom: 120px;
+        }
+        .showcase-row:nth-child(even) { flex-direction: row-reverse; }
+        
+        .showcase-text { flex: 1; }
+        .showcase-text h3 { font-size: 2.2rem; color: var(--halo-green); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;}
+        .showcase-text p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;}
+        .showcase-visual { flex: 1.2; perspective: 1000px; }
+
+        /* ================= CSS INTERNO DE LOS MOCKUPS ================= */
+        .ui-sim-panel { height: 350px; display: flex; flex-direction: column; background: #F9F6F0; position: relative;}
+        .ui-sim-header { background: var(--halo-green); color: white; padding: 12px; font-weight: bold; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid var(--halo-cyan); }
+        .ui-sim-body { padding: 15px; flex-grow: 1; overflow: hidden; display: flex; flex-direction: column; gap: 10px; position:relative;}
+        
+        /* 1. Chat */
+        .sim-row { display: flex; width: 100%; }
+        .sim-row.user { justify-content: flex-end; }
+        .sim-row.ia { justify-content: flex-start; align-items: flex-end; }
+        .sim-bubble { max-width: 85%; padding: 10px 14px; border-radius: 12px; font-size: 13px; line-height: 1.4; box-shadow: 0 1px 2px rgba(0,0,0,0.1);}
+        .sim-row.user .sim-bubble { background: var(--ui-user-bubble); border-bottom-right-radius: 0; color: #1A1F16;}
+        .sim-row.ia .sim-bubble { background: var(--ui-ia-bubble); border-bottom-left-radius: 0; border: 1px solid #D1D8CE;}
+        
+        /* 2. Flashcards */
+        .sim-flashcard-container { width: 100%; height: 100%; perspective: 1000px; display: flex; justify-content: center; align-items: center; padding: 20px;}
+        .sim-flashcard-inner { width: 80%; height: 60%; position: relative; text-align: center; transition: transform 0.8s; transform-style: preserve-3d; animation: autoFlip 6s infinite; }
+        .sim-front, .sim-back { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; display: flex; align-items: center; justify-content: center; padding: 20px; border-radius: 12px; font-weight: bold; box-shadow: 0 5px 15px rgba(0,0,0,0.1); font-size: 20px; box-sizing: border-box;}
+        .sim-front { background: white; border: 3px solid var(--halo-cyan); color: #1A1F16; }
+        .sim-back { background: var(--halo-green); color: white; transform: rotateY(180deg); }
+        @keyframes autoFlip { 0%, 40% { transform: rotateY(0deg); } 50%, 90% { transform: rotateY(180deg); } 100% { transform: rotateY(0deg); } }
+
+        /* 3. Mapa Mental */
+        .sim-map-container { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background:#FFFFFF;}
+        .map-node { position: absolute; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 2;}
+        .map-root { background: var(--halo-green); color: white; border: 2px solid var(--halo-dark); }
+        .map-sub1 { background: var(--halo-cyan); color: #1A1F16; top: 15%; left: 10%; }
+        .map-sub2 { background: var(--halo-cyan); color: #1A1F16; top: 15%; right: 10%; }
+        .map-sub3 { background: var(--halo-cyan); color: #1A1F16; bottom: 20%; left: 50%; transform: translateX(-50%); }
+        .map-line { position: absolute; background: #A3AFA0; z-index: 1;}
+        .line-1 { width: 2px; height: 100px; top: 25%; left: 25%; transform: rotate(-45deg); }
+        .line-2 { width: 2px; height: 100px; top: 25%; right: 25%; transform: rotate(45deg); }
+        .line-3 { width: 2px; height: 100px; bottom: 30%; left: 50%; }
+
+        /* 4. Quiz */
+        .sim-quiz-option { display: block; width: 100%; padding: 12px; margin-bottom: 8px; background: #FFFFFF; border: 2px solid #D1D8CE; border-radius: 8px; text-align: left; font-size: 13px; font-weight: 500;}
+        .sim-quiz-option.correct { background: #E6FFE3; border-color: #4AD63A; color: #255C03; font-weight: bold;}
+        .sim-quiz-option.incorrect { background: #FFD1D9; border-color: #FA0A10; color: #990000; text-decoration: line-through;}
+
+        /* 5. Simulador Examen (Dark) */
+        .sim-exam-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: #1A1F16; color: white; display:flex; flex-direction: column; align-items: stretch; padding: 20px; z-index: 10; box-sizing: border-box;}
+        .sim-timer { position: absolute; top: 15px; right: 15px; color: #FA0A10; font-weight: bold; font-size: 18px; border: 2px solid #FA0A10; padding: 5px 10px; border-radius: 6px; background: rgba(0,0,0,0.5);}
+        .sim-exam-box { width: 100%; background: white; color: #1A1F16; padding: 20px; border-radius: 12px; border: 3px solid var(--halo-green); margin-top: 40px; box-sizing: border-box;}
+
+        /* 6. Dashboard & Historial */
+        .sim-stat { background: #FFFFFF; border: 1px solid #D1D8CE; padding: 12px; border-radius: 8px; margin-bottom: 10px; display: flex; justify-content: space-between; align-items: center;}
+        .sim-stat strong { font-size: 20px; color: var(--halo-cyan); }
+        .sim-history-item { background: #EADFCD; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 12px; font-weight: bold; color: #3B4636; border-left: 4px solid var(--halo-green);}
+
+        /* 7. Temas y Accesibilidad */
+        .theme-demo-container { transition: all 1s ease; }
+        .demo-oscuro { --bg-p: #1A1F16; --bg-c: #242B1F; --t-main: #EADFCD; --p-col: #5D7052; --a-col: #4FD1C5; --font: sans-serif; --fw: normal; --b-col: #3B4636;}
+        .demo-claro { --bg-p: #FFFFFF; --bg-c: #F9F6F0; --t-main: #2C3327; --p-col: #5D7052; --a-col: #4FD1C5; --font: sans-serif; --fw: normal; --b-col: #D1D8CE;}
+        .demo-dislexia { --bg-p: #FAFAFA; --bg-c: #F0F0F0; --t-main: #111111; --p-col: #2980B9; --a-col: #F1C40F; --font: 'Comic Sans MS', sans-serif; --fw: normal; --b-col: #BDC3C7;}
+        .demo-daltonismo { --bg-p: #000000; --bg-c: #111111; --t-main: #FFFFFF; --p-col: #0055FF; --a-col: #FFFF00; --font: sans-serif; --fw: bold; --b-col: #FFFF00;}
+        
+        .theme-demo-panel { background: var(--bg-p); height: 350px; display: flex; flex-direction: column; transition: all 0.5s; font-family: var(--font); font-weight: var(--fw); border: 1px solid var(--b-col); border-radius:0 0 12px 12px;}
+        .theme-demo-header { background: var(--p-col); color: white; padding: 12px; display: flex; justify-content: space-between; align-items:center; border-bottom: 2px solid var(--a-col); transition: all 0.5s;}
+        .theme-demo-chat { padding: 15px; background: var(--bg-c); flex-grow: 1; transition: all 0.5s; color: var(--t-main);}
+        .theme-label-badge { position: absolute; top: -15px; left: 50%; transform: translateX(-50%); background: var(--halo-cyan); color: #1A1F16; padding: 5px 15px; border-radius: 20px; font-weight: bold; z-index: 20; box-shadow: 0 5px 10px rgba(0,0,0,0.2); transition: 0.3s;}
+
+        #btn-theme-toggle { background: transparent; border: none; font-size: 24px; cursor: pointer; transition: 0.2s; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.2)); }
+        #btn-theme-toggle:hover { transform: scale(1.2) rotate(15deg); }
+        #btn-theme-toggle:active { transform: scale(0.9); }
+
+        /* ================= CARACTERISTICAS ================= */
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .feature-card {
+            background: var(--glass-bg); backdrop-filter: blur(10px); padding: 40px 30px; border-radius: 20px; border: 1px solid var(--glass-border);
+            box-shadow: var(--shadow-soft); transition: 0.4s; position: relative; overflow: hidden;
+        }
+        .feature-card::before {
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
+            background: linear-gradient(90deg, var(--halo-green), var(--halo-cyan));
+            transform: scaleX(0); transform-origin: left; transition: 0.4s;
+        }
+        .feature-card:hover { transform: translateY(-10px); box-shadow: var(--shadow-glow); }
+        .feature-card:hover::before { transform: scaleX(1); }
+        .feature-icon { font-size: 3rem; margin-bottom: 20px; display: inline-block; padding: 15px; background: #EADFCD; border-radius: 16px; border: 2px solid var(--halo-cyan); animation: floatHover 3s ease-in-out infinite;}
+        .feature-card h3 { font-size: 1.5rem; color: var(--halo-dark); margin-bottom: 15px; }
+
+        @keyframes floatHover { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
+
+        /* ================= INSTALACIÓN ================= */
+        .install-section { background: var(--bg-white); border-radius: 30px; padding: 60px; box-shadow: var(--shadow-soft); border: 1px solid var(--glass-border); position: relative; overflow: hidden; margin-top: 50px;}
+        .install-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 40px; margin-top: 40px; }
+        .install-card { padding: 40px; border-radius: 20px; border: 2px solid #EADFCD; text-align: center; transition: 0.3s; }
+        .install-card:hover { border-color: var(--halo-cyan); background: var(--bg-cream); transform: translateY(-5px); box-shadow: var(--shadow-glow); }
+        .install-step { text-align: left; margin-top: 20px; padding-left: 20px; }
+        .install-step li { margin-bottom: 10px; color: var(--text-muted); font-size: 1.1rem; }
+        .install-step li strong { color: var(--halo-dark); }
+        .btn-outline { display: inline-block; margin-top: 20px; padding: 12px 30px; border: 2px solid var(--halo-green); color: var(--halo-green); border-radius: 30px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-outline:hover { background: var(--halo-green); color: white; }
+
+        /* ================= FOOTER ================= */
+        footer { background: var(--halo-dark); color: white; text-align: center; padding: 50px 20px; margin-top: 50px; }
+        footer img { height: 50px; margin-bottom: 20px; filter: brightness(0) invert(1);}
+
+        /* CLASES PARA SCROLL REVEAL (Entradas desde los lados) */
+        .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal-right { opacity: 0; transform: translateX(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal-up { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal-left.active, .reveal-right.active, .reveal-up.active { opacity: 1; transform: translate(0,0); }
+
+
+        /* ================= ADAPTACIÓN MÓVIL (CORREGIDA) ================= */
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            .hero { padding: 160px 15px 50px; }
+            .hero h1 { font-size: 2.8rem; }
+            .hero p { font-size: 1.1rem; }
+            
+            .hero-mockup-wrapper { display: block; width: 100%; transform: scale(0.9); margin-top: -30px; margin-bottom: 20px;}
+            .nexus-mockup-panel { width: 90%; max-width: 320px; right: 5%; bottom: 10px; height: 400px; }
+            .browser-content { height: 450px; padding: 10px; }
+
+            .showcase-row { flex-direction: column !important; gap: 40px; margin-bottom: 80px;}
+            .showcase-text { text-align: center; }
+            .showcase-text h3 { justify-content: center; font-size: 1.8rem;}
+            
+            .ui-sim-panel { height: 300px; }
+            
+            /* FIX: Expandir Flashcards al 100% y respetar márgenes */
+            .sim-flashcard-container { padding: 15px; }
+            .sim-flashcard-inner { width: 100%; height: 100%; }
+            .sim-front, .sim-back { font-size: 18px; padding: 15px; }
+            
+            /* FIX: Expandir Modo Examen al 100% para evitar aplastamiento */
+            .sim-exam-overlay { padding: 15px; }
+            .sim-exam-box { width: 100%; padding: 15px; margin-top: 50px; box-sizing: border-box; }
+            .sim-timer { font-size: 16px; top: 10px; right: 10px; }
+            
+            .question { font-size: 18px; margin-bottom: 15px; }
+            .option { font-size: 14px; padding: 10px 15px; }
+
+            .install-section { padding: 40px 20px; }
+            .install-grid { grid-template-columns: 1fr; gap: 30px; }
+            .features-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Fondos animados -->
+    <div class="bg-animated">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+    </div>
+
+    <!-- Navegación -->
+    <nav>
+        <div class="nav-logo">
+            <img src="assets/logo_alpacatech.png" alt="Alpaca Tech">
+            NEXUS BLACK
+        </div>
+        <a href="#instalar" class="btn-nav">Instalar Ahora</a>
+    </nav>
+
+    <!-- Hero Section -->
+    <header class="hero">
+        <div class="hero-badge">🚀 IA Educativa de Próxima Generación</div>
+        <h1>Domina Blackboard.<br><span>Estudia de verdad.</span></h1>
+        <p>Convierte tus lecturas de 50 páginas en mapas mentales, flashcards y simulacros de examen en un abrir y cerrar de ojos.</p>
+        
+        <div class="hero-logos">
+            <img src="assets/logo_ucv.png" alt="UCV">
+            <img src="assets/logo_blackboard.png" alt="Blackboard">
+        </div>
+
+        <a href="#instalar" class="btn-hero">Descargar Extensión</a>
+    </header>
+
+    <!-- EL MOCKUP GIGANTE -->
+    <div class="hero-mockup-wrapper reveal-up">
+        <div class="mockup-browser">
+            <div class="browser-header">
+                <div class="dot"></div><div class="dot"></div><div class="dot"></div>
+            </div>
+            <div class="browser-content">
+                <div class="nexus-mockup-panel">
+                    <div style="background:var(--halo-green); color:white; padding:15px; font-weight:bold; display:flex; justify-content:space-between; align-items:center; border-bottom: 2px solid var(--halo-cyan);">
+                        <span style="display:flex; align-items:center; gap:10px;"><img src="assets/alpaca_reposo.png" style="height:30px; border-radius:50%; border:1px solid white;"> Alpaca Tech x BB</span>
+                        <span>&times;</span>
+                    </div>
+                    <div style="padding: 20px; text-align: center; background:#F9F6F0; flex-grow:1; display:flex; flex-direction:column; justify-content:center; align-items:center;">
+                        <img src="assets/alpaca_exito.png" style="width:100px; height:100px; border-radius:50%; border:3px solid var(--halo-cyan); margin-bottom:15px; box-shadow: 0 0 20px rgba(79, 209, 197, 0.4); background:white;">
+                        <h2 style="color:#1A1F16; font-size:22px; margin-bottom: 5px;">¡Alpaca en línea!</h2>
+                        <p style="font-size:13px; color:#5D7052; margin-bottom:20px;">Sincronizado con Blackboard y UCV.</p>
+                        
+                        <div style="display:grid; grid-template-columns: 1fr 1fr; gap:10px; width: 100%;">
+                            <div style="background:white; border:1px solid #D1D8CE; padding:12px; border-radius:8px; font-weight:bold; font-size:13px; color:#1A1F16; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">📂 Extraer</div>
+                            <div style="background:white; border:1px solid #D1D8CE; padding:12px; border-radius:8px; font-weight:bold; font-size:13px; color:#1A1F16; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">🧠 Mapa</div>
+                            <div style="background:white; border:1px solid #D1D8CE; padding:12px; border-radius:8px; font-weight:bold; font-size:13px; color:#1A1F16; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">🃏 Flashcards</div>
+                            <div style="background:var(--halo-cyan); border:1px solid #D1D8CE; padding:12px; border-radius:8px; font-weight:bold; font-size:13px; color:#1A1F16; box-shadow: 0 2px 5px rgba(0,0,0,0.05);">🎓 Examen</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section class="showcase-section" id="showcase">
+        <h2 class="section-title reveal-up">La Interfaz en Acción</h2>
+        <p class="section-subtitle reveal-up">Todo ocurre en una ventana inteligente, sin que tengas que salir de tus lecturas en Blackboard.</p>
+
+        <!-- Chat -->
+        <div class="showcase-row">
+            <div class="showcase-text reveal-left">
+                <h3>💬 Chat Multimodal IA</h3>
+                <p>Nuestra Alpaca no solo habla. Extrae texto, renderiza fórmulas matemáticas complejas en formato LaTeX, e incluso pinta arte neuronal si se lo pides.</p>
+                <p>Y si te cansas de leer, activa el <strong>Lector de Voz (TTS)</strong> integrado en cada mensaje.</p>
+            </div>
+            <div class="showcase-visual reveal-right">
+                <div class="mockup-browser">
+                    <div class="browser-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div class="ui-sim-panel">
+                        <div class="ui-sim-header"><img src="assets/alpaca_reposo.png" style="width:20px; border-radius:50%; background:white;"> Comando Alpaca</div>
+                        <div class="ui-sim-body">
+                            <div class="sim-row user"><div class="sim-bubble">Explica la fórmula de Einstein</div></div>
+                            <div class="sim-row ia">
+                                <img src="assets/alpaca_exito.png" style="width:20px; height:20px; border-radius:50%; margin-right:5px; border:1px solid var(--halo-cyan); background:white;">
+                                <div class="sim-bubble">
+                                    Claro, la equivalencia masa-energía es:
+                                    <div style="background: white; padding:5px; border:1px solid var(--halo-cyan); font-family:monospace; margin-top:5px; text-align:center;">E = mc<sup>2</sup></div>
+                                </div>
+                            </div>
+                            <div class="sim-row user"><div class="sim-bubble">Dibuja una neurona en 3D</div></div>
+                            <div class="sim-row ia">
+                                <img src="assets/alpaca_pensando.png" style="width:20px; height:20px; border-radius:50%; margin-right:5px; border:1px solid var(--halo-cyan); background:white;">
+                                <div class="sim-bubble" style="opacity:0.7; font-style:italic;">Pintando arte neuronal...</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mapas -->
+        <div class="showcase-row">
+            <div class="showcase-text reveal-right">
+                <h3>🧠 Mapas Mentales (Nodos)</h3>
+                <p>Extrae instantáneamente las ideas clave de cualquier documento PDF y visualízalas en un lienzo interactivo. Puedes mover los nodos físicos y exportar el esquema final a PDF.</p>
+            </div>
+            <div class="showcase-visual reveal-left">
+                <div class="mockup-browser">
+                    <div class="browser-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div class="ui-sim-panel">
+                        <div class="ui-sim-header" style="background:#EADFCD; color:#1A1F16; border-bottom-color:#3B4636;">🧠 MAPA VISUAL <span style="margin-left:auto; font-size:10px; background:white; padding:2px 8px; border-radius:4px;">📄 PDF</span></div>
+                        <div class="sim-map-container">
+                            <div class="map-line line-1"></div>
+                            <div class="map-line line-2"></div>
+                            <div class="map-line line-3"></div>
+                            <div class="map-node map-root" style="top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 15px;">INGENIERÍA</div>
+                            <div class="map-node map-sub1">Sistemas</div>
+                            <div class="map-node map-sub2">Software</div>
+                            <div class="map-node map-sub3">Redes</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Flashcards -->
+        <div class="showcase-row">
+            <div class="showcase-text reveal-left">
+                <h3>🃏 Modo Concentración</h3>
+                <p>Estudia activamente. La IA generará tarjetas de pregunta/respuesta que puedes voltear. El sistema oscuro inmersivo te aislará de distracciones.</p>
+            </div>
+            <div class="showcase-visual reveal-right">
+                <div class="mockup-browser">
+                    <div class="browser-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div class="ui-sim-panel" style="background: rgba(26,31,22,0.9);">
+                        <div class="sim-flashcard-container">
+                            <div class="sim-flashcard-inner">
+                                <div class="sim-front">Patrón MVC</div>
+                                <div class="sim-back">Modelo, Vista, Controlador. Arquitectura de Software.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz -->
+        <div class="showcase-row">
+            <div class="showcase-text reveal-right">
+                <h3>📝 Quizzes Rápidos</h3>
+                <p>Comprueba tu retención al momento. Los botones reaccionan con un diseño verde/rojo que indica al instante tu precisión. Suma <b>Puntos y Alpaca Coins</b> por cada acierto.</p>
+            </div>
+            <div class="showcase-visual reveal-left">
+                <div class="mockup-browser">
+                    <div class="browser-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div class="ui-sim-panel">
+                        <div class="ui-sim-header" style="background:var(--user-bubble); color:#1A1F16;">📝 QUIZ | 🏆 20 pts</div>
+                        <div class="ui-sim-body" style="background:white;">
+                            <div style="font-weight:bold; margin-bottom:10px; color:#3B4636; font-size:14px;">1. ¿Qué es un framework?</div>
+                            <div class="sim-quiz-option correct">✓ Entorno de trabajo estructurado</div>
+                            <div class="sim-quiz-option incorrect">✗ Un lenguaje de programación</div>
+                            <div class="sim-quiz-option" style="opacity:0.6;">Una base de datos</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Simulador Premium -->
+        <div class="showcase-row">
+            <div class="showcase-text reveal-left">
+                <h3>🎓 Simulador de Exámenes</h3>
+                <p>Configura tu propio examen (Corto, Medio o Largo). La pantalla se bloquea, el temporizador corre y el texto es <b>in-copiable</b>. Al finalizar, obtén un PDF con tu nota.</p>
+            </div>
+            <div class="showcase-visual reveal-right">
+                <div class="mockup-browser">
+                    <div class="browser-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div class="ui-sim-panel" style="position:relative;">
+                        <div class="sim-exam-overlay">
+                            <div class="sim-timer">⏱️ 14:59</div>
+                            <h3 style="color:var(--halo-cyan); margin-bottom:10px;">Evaluación en curso</h3>
+                            <div class="sim-exam-box">
+                                <div class="question" style="font-size: 16px;">2. Pregunta de alto nivel...</div>
+                                <div class="sim-quiz-option" style="background:#D5E2D0; border-color:#5D7052; font-weight:bold;">Opción seleccionada</div>
+                                <div class="sim-quiz-option">Opción normal</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historial & Analytics -->
+        <div class="showcase-row">
+            <div class="showcase-text reveal-right">
+                <h3>📊 Dashboard y Cloud Sync</h3>
+                <p>Tu estudio no se pierde. Cada sesión se sincroniza con la nube de <b>Supabase</b>. Revisa tu historial de chats, cuántas horas has estudiado y tu porcentaje de precisión en los exámenes.</p>
+                <div style="margin-top:20px; display:inline-block; padding: 10px; background: rgba(79,209,197,0.2); border-radius:12px; border: 1px solid var(--halo-cyan);">
+                    <img src="assets/alpaca_sin_energia.png" style="width:30px; vertical-align:middle; border-radius:50%; background:white; margin-right:10px;">
+                    <span style="font-weight:bold; color:var(--halo-dark); font-size: 14px;">El sistema te avisará si te quedas sin Coins.</span>
+                </div>
+            </div>
+            <div class="showcase-visual reveal-left">
+                <div class="mockup-browser">
+                    <div class="browser-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div class="ui-sim-panel">
+                        <div class="ui-sim-header" style="background:var(--halo-cyan); color:#1A1F16;">📊 Tu Progreso & Historial</div>
+                        <div class="sim-analytics" style="padding:15px; height:100%; background:white;">
+                            <div style="display:flex; gap:10px; margin-bottom:15px;">
+                                <div class="sim-stat" style="flex:1; flex-direction:column; padding:10px;">Precisión<br><strong>85%</strong></div>
+                                <div class="sim-stat" style="flex:1; flex-direction:column; padding:10px;">Exámenes<br><strong>4</strong></div>
+                            </div>
+                            <h4 style="margin-bottom:10px; color:#5D7052;">🗂️ Sesiones en la nube</h4>
+                            <div class="sim-history-item">Sesión de Estudio MVC <br><span style="font-weight:normal; color:#A3AFA0;">12/10/2026</span></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Temas interactivos -->
+        <div class="showcase-row">
+            <div class="showcase-text reveal-left">
+                <h3>👁️‍🗨️ Accesibilidad Total</h3>
+                <p>Nadie se queda atrás. Hemos diseñado temas científicos como el <b>Modo Dislexia</b> (con tipografía Comic Sans y mayor espaciado) y el <b>Modo Alto Contraste</b> para daltonismo, además de los modos Oscuro y Claro.</p>
+                <p style="color: var(--halo-cyan); font-weight: bold; margin-top: 10px;">👇 ¡Haz clic en la luna/sol del panel para probarlos!</p>
+            </div>
+            <div class="showcase-visual reveal-right">
+                <div class="mockup-browser" style="position:relative; margin-top:20px;">
+                    <div class="theme-label-badge" id="theme-label">Modo Claro</div>
+                    <div class="browser-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+                    <div class="theme-demo-container demo-claro" id="theme-sim-panel">
+                        <div class="theme-demo-panel">
+                            <div class="theme-demo-header">
+                                <span><img src="assets/alpaca_reposo.png" style="width:20px; border-radius:50%; vertical-align:middle; background:white;"> Menú Accesible</span> 
+                                <button id="btn-theme-toggle" style="background:transparent; border:none; font-size:24px; cursor:pointer; color:white; transition: 0.2s; filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));">☀️</button>
+                            </div>
+                            <div class="theme-demo-chat">
+                                <p id="theme-desc" style="margin-bottom:10px; font-size:14px; line-height:1.5;">Modo Claro: Verdes suaves y fondos cremas. Ideal para ambientes bien iluminados y lectura prolongada.</p>
+                                <div style="background: var(--p-col); color:white; padding:10px; border-radius:8px; display:inline-block; margin-top: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1);">
+                                    La Interfaz se adapta a ti.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Características -->
+    <section id="features">
+        <h2 class="section-title reveal-up">Potencia Académica</h2>
+        <div class="features-grid">
+            <div class="feature-card reveal-left">
+                <div class="feature-icon">📂</div>
+                <h3>Lectura Universal</h3>
+                <p>Arrastra PDFs, DOCX o extrae directamente el material de tus cursos en Blackboard. La IA procesa y memoriza el contexto al instante.</p>
+            </div>
+            <div class="feature-card reveal-up">
+                <div class="feature-icon">🧠</div>
+                <h3>Mapas Mentales</h3>
+                <p>Transforma textos densos en diagramas interactivos (Vis.js). Visualiza la arquitectura de tus temas y expórtalos a PDF.</p>
+            </div>
+            <div class="feature-card reveal-right">
+                <div class="feature-icon">🎓</div>
+                <h3>Simulador Premium</h3>
+                <p>Activa el <i>Modo Examen</i>. Un entorno anti-copia con temporizador estricto y niveles de dificultad que evaluará tu aprendizaje.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Instalación -->
+    <section id="instalar">
+        <div class="install-section reveal-up">
+            <h2 class="section-title" style="margin-bottom: 20px;">Instala Nexus Black</h2>
+            <p style="text-align: center; font-size: 1.2rem; color: var(--text-muted);">Elige el método de instalación que mejor se adapte a ti.</p>
+            
+            <div class="install-grid">
+                <div class="install-card">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--halo-dark);">Chrome Web Store</h3>
+                    <p>La forma más rápida y segura. Actualizaciones automáticas y sincronización instantánea.</p>
+                    <a href="https://chrome.google.com/webstore" target="_blank" class="btn-hero" style="margin-top: 25px; padding: 15px 30px;">Añadir a Chrome</a>
+                </div>
+
+                <div class="install-card" style="border-color: var(--halo-cyan);">
+                    <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--halo-dark);">Modo Desarrollador</h3>
+                    <p>Usa esta opción si posees el paquete comprimido oficial de Alpaca Tech.</p>
+                    <ul class="install-step">
+                        <li><strong>1.</strong> Descarga y descomprime el archivo ZIP.</li>
+                        <li><strong>2.</strong> Abre Google Chrome y ve a <code>chrome://extensions/</code></li>
+                        <li><strong>3.</strong> Activa el <strong>"Modo de desarrollador"</strong>.</li>
+                        <li><strong>4.</strong> Haz clic en <strong>"Cargar descomprimida"</strong> y selecciona la carpeta.</li>
+                    </ul>
+                    <a href="https://drive.google.com/file/d/10eGBBZGoFoQdZORkdHxykN9AlL2PFKJv/view?usp=sharing" target="_blank" class="btn-outline">Descargar ZIP Oficial</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <img src="assets/logo_alpacatech.png" alt="Alpaca Tech Logo">
+        <h2>NEXUS BLACK</h2>
+        <p style="margin-top: 10px; color: rgba(255,255,255,0.6);">Desarrollado con ♥ por Ahirton Jizmar Esteban Ore (Comando Alpaca).</p>
+        <p style="color: rgba(255,255,255,0.4); font-size: 0.9rem; margin-top: 5px;">Sistemas UCV Chimbote, 2026.</p>
+    </footer>
+
+    <!-- LÓGICA DE ANIMACIONES (Scroll Reveal + Theme Switcher Interactivo) -->
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // SCROLL REVEAL
+            const observerOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('active');
+                    }
+                });
+            }, observerOptions);
+
+            document.querySelectorAll('.reveal-left, .reveal-right, .reveal-up').forEach((element) => {
+                observer.observe(element);
+            });
+
+            // ANIMACIÓN DE MOCKUP DE TEMAS (AL HACER CLIC)
+            const themeMockup = document.getElementById('theme-sim-panel');
+            const themeLabel = document.getElementById('theme-label');
+            const btnThemeToggle = document.getElementById('btn-theme-toggle');
+            const themeDesc = document.getElementById('theme-desc');
+            
+            const themes = ['demo-claro', 'demo-colorido', 'demo-oscuro', 'demo-dislexia', 'demo-daltonismo'];
+            const themeNames = ['Modo Claro', 'Modo Colorido', 'Modo Oscuro', 'Modo Dislexia', 'Alto Contraste'];
+            const themeIcons = ['☀️', '🎨', '🌙', '👁️‍🗨️', '👁️'];
+            const themeDescriptions = [
+                "Modo Claro: Verdes suaves y fondos cremas. Ideal para ambientes bien iluminados y lectura prolongada.",
+                "Modo Colorido: Más vibrante y amigable. Resalta los elementos clave con colores pastel.",
+                "Modo Oscuro: Reduce la fatiga visual en ambientes de poca luz. Tonos profundos y contraste equilibrado.",
+                "Modo Dislexia: Usa tipografía Comic Sans MS y mayor interlineado, científicamente probada para facilitar la lectura.",
+                "Alto Contraste: Colores puros, fondos negros y textos en negrita, diseñado específicamente para distintos grados de daltonismo."
+            ];
+            
+            let tIndex = 0;
+
+            btnThemeToggle.addEventListener('click', () => {
+                btnThemeToggle.style.transform = 'scale(0.8)';
+                setTimeout(() => { btnThemeToggle.style.transform = 'scale(1)'; }, 150);
+
+                tIndex = (tIndex + 1) % themes.length;
+                themeMockup.className = 'theme-demo-container ' + themes[tIndex];
+                themeLabel.textContent = themeNames[tIndex];
+                btnThemeToggle.textContent = themeIcons[tIndex];
+                themeDesc.textContent = themeDescriptions[tIndex];
+                
+                themeLabel.style.transform = 'translateX(-50%) scale(1.1)';
+                setTimeout(() => { themeLabel.style.transform = 'translateX(-50%) scale(1)'; }, 200);
+            });
+        });
+    </script>
+</body>
+</html>
