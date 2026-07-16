@@ -171,7 +171,7 @@
         .showcase-text { flex: 1; }
         .showcase-text h3 { font-size: 2.2rem; color: var(--halo-green); margin-bottom: 15px; display: flex; align-items: center; gap: 10px;}
         .showcase-text p { font-size: 1.1rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;}
-        .showcase-visual { flex: 1.2; perspective: 1000px; }
+        .showcase-visual { flex: 1.2; perspective: 1000px; width: 100%; }
 
         /* ================= CSS INTERNO DE LOS MOCKUPS ================= */
         .ui-sim-panel { height: 350px; display: flex; flex-direction: column; background: #F9F6F0; position: relative;}
@@ -211,8 +211,8 @@
         .sim-quiz-option.correct { background: #E6FFE3; border-color: #4AD63A; color: #255C03; font-weight: bold;}
         .sim-quiz-option.incorrect { background: #FFD1D9; border-color: #FA0A10; color: #990000; text-decoration: line-through;}
 
-        /* 5. Simulador Examen (Dark) */
-        .sim-exam-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: #1A1F16; color: white; display:flex; flex-direction: column; align-items: stretch; padding: 20px; z-index: 10; box-sizing: border-box;}
+        /* 5. Simulador Examen */
+        .sim-exam-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: #1A1F16; color: white; display:flex; flex-direction: column; padding: 20px; z-index: 10; box-sizing: border-box;}
         .sim-timer { position: absolute; top: 15px; right: 15px; color: #FA0A10; font-weight: bold; font-size: 18px; border: 2px solid #FA0A10; padding: 5px 10px; border-radius: 6px; background: rgba(0,0,0,0.5);}
         .sim-exam-box { width: 100%; background: white; color: #1A1F16; padding: 20px; border-radius: 12px; border: 3px solid var(--halo-green); margin-top: 40px; box-sizing: border-box;}
 
@@ -270,14 +270,14 @@
         footer { background: var(--halo-dark); color: white; text-align: center; padding: 50px 20px; margin-top: 50px; }
         footer img { height: 50px; margin-bottom: 20px; filter: brightness(0) invert(1);}
 
-        /* CLASES PARA SCROLL REVEAL (Entradas desde los lados) */
+        /* CLASES PARA SCROLL REVEAL */
         .reveal-left { opacity: 0; transform: translateX(-50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal-right { opacity: 0; transform: translateX(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal-up { opacity: 0; transform: translateY(50px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
         .reveal-left.active, .reveal-right.active, .reveal-up.active { opacity: 1; transform: translate(0,0); }
 
 
-        /* ================= ADAPTACIÓN MÓVIL (CORREGIDA) ================= */
+        /* ================= ADAPTACIÓN MÓVIL (CORREGIDA AL 100%) ================= */
         @media (max-width: 768px) {
             nav { padding: 15px 20px; flex-direction: column; gap: 15px; }
             .hero { padding: 160px 15px 50px; }
@@ -291,19 +291,41 @@
             .showcase-row { flex-direction: column !important; gap: 40px; margin-bottom: 80px;}
             .showcase-text { text-align: center; }
             .showcase-text h3 { justify-content: center; font-size: 1.8rem;}
+            .showcase-visual { width: 100%; max-width: 100%; }
+            .mockup-browser { width: 100%; }
             
-            .ui-sim-panel { height: 300px; }
+            .ui-sim-panel { height: auto !important; min-height: 300px !important; }
             
             /* FIX: Expandir Flashcards al 100% y respetar márgenes */
-            .sim-flashcard-container { padding: 15px; }
-            .sim-flashcard-inner { width: 100%; height: 100%; }
-            .sim-front, .sim-back { font-size: 18px; padding: 15px; }
+            .sim-flashcard-container { padding: 10px !important; height: 300px !important; display: flex !important; align-items: center !important; }
+            .sim-flashcard-inner { width: 100% !important; height: 220px !important; }
+            .sim-front, .sim-back { font-size: 16px !important; padding: 15px !important; }
             
-            /* FIX: Expandir Modo Examen al 100% para evitar aplastamiento */
-            .sim-exam-overlay { padding: 15px; }
-            .sim-exam-box { width: 100%; padding: 15px; margin-top: 50px; box-sizing: border-box; }
-            .sim-timer { font-size: 16px; top: 10px; right: 10px; }
-            
+            /* FIX: Modo Examen estirado y sin aplastamiento */
+            .sim-exam-overlay { 
+                position: relative !important; /* Libera el panel del absoluto para que respire */
+                height: auto !important; 
+                min-height: 100% !important; 
+                padding: 20px 15px !important; 
+                display: flex !important; 
+                flex-direction: column !important; 
+                justify-content: center !important;
+            }
+            .sim-timer { 
+                position: relative !important; 
+                top: 0 !important; 
+                right: 0 !important; 
+                align-self: flex-end !important; 
+                margin-bottom: 15px !important; 
+                display: inline-block !important;
+            }
+            .sim-exam-box { 
+                margin-top: 0 !important; 
+                width: 100% !important; 
+                padding: 15px !important; 
+                box-sizing: border-box !important;
+            }
+
             .question { font-size: 18px; margin-bottom: 15px; }
             .option { font-size: 14px; padding: 10px 15px; }
 
@@ -486,12 +508,12 @@
             <div class="showcase-visual reveal-right">
                 <div class="mockup-browser">
                     <div class="browser-header"><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
-                    <div class="ui-sim-panel" style="position:relative;">
+                    <div class="ui-sim-panel">
                         <div class="sim-exam-overlay">
                             <div class="sim-timer">⏱️ 14:59</div>
                             <h3 style="color:var(--halo-cyan); margin-bottom:10px;">Evaluación en curso</h3>
                             <div class="sim-exam-box">
-                                <div class="question" style="font-size: 16px;">2. Pregunta de alto nivel...</div>
+                                <div class="question" style="font-size: 16px; color:#3B4636; font-weight:bold;">2. Pregunta de alto nivel...</div>
                                 <div class="sim-quiz-option" style="background:#D5E2D0; border-color:#5D7052; font-weight:bold;">Opción seleccionada</div>
                                 <div class="sim-quiz-option">Opción normal</div>
                             </div>
@@ -588,12 +610,14 @@
             <p style="text-align: center; font-size: 1.2rem; color: var(--text-muted);">Elige el método de instalación que mejor se adapte a ti.</p>
             
             <div class="install-grid">
+                <!-- Método 1: Tienda -->
                 <div class="install-card">
                     <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--halo-dark);">Chrome Web Store</h3>
                     <p>La forma más rápida y segura. Actualizaciones automáticas y sincronización instantánea.</p>
                     <a href="https://chrome.google.com/webstore" target="_blank" class="btn-hero" style="margin-top: 25px; padding: 15px 30px;">Añadir a Chrome</a>
                 </div>
 
+                <!-- Método 2: Desarrollador -->
                 <div class="install-card" style="border-color: var(--halo-cyan);">
                     <h3 style="font-size: 1.8rem; margin-bottom: 15px; color: var(--halo-dark);">Modo Desarrollador</h3>
                     <p>Usa esta opción si posees el paquete comprimido oficial de Alpaca Tech.</p>
@@ -603,6 +627,7 @@
                         <li><strong>3.</strong> Activa el <strong>"Modo de desarrollador"</strong>.</li>
                         <li><strong>4.</strong> Haz clic en <strong>"Cargar descomprimida"</strong> y selecciona la carpeta.</li>
                     </ul>
+                    <!-- ENLACE AL DRIVE OFICIAL -->
                     <a href="https://drive.google.com/file/d/10eGBBZGoFoQdZORkdHxykN9AlL2PFKJv/view?usp=sharing" target="_blank" class="btn-outline">Descargar ZIP Oficial</a>
                 </div>
             </div>
@@ -613,8 +638,8 @@
     <footer>
         <img src="assets/logo_alpacatech.png" alt="Alpaca Tech Logo">
         <h2>NEXUS BLACK</h2>
-        <p style="margin-top: 10px; color: rgba(255,255,255,0.6);">Desarrollado por AlpacaTech (Comando Alpaca).</p>
-        <p style="color: rgba(255,255,255,0.4); font-size: 0.9rem; margin-top: 5px;">Ingeniería de Sistemas - UCV Chimbote, 2026.</p>
+        <p style="margin-top: 10px; color: rgba(255,255,255,0.6);">Desarrollado con ♥ por Ahirton Jizmar Esteban Ore (Comando Alpaca).</p>
+        <p style="color: rgba(255,255,255,0.4); font-size: 0.9rem; margin-top: 5px;">Sistemas UCV Chimbote, 2026.</p>
     </footer>
 
     <!-- LÓGICA DE ANIMACIONES (Scroll Reveal + Theme Switcher Interactivo) -->
