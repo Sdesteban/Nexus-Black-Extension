@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Política de Privacidad | Nexus Black</title>
+    <style>
+        /* ================= VARIABLES Y RESET ================= */
+        :root {
+            --bg-cream: #F9F6F0; 
+            --bg-white: #FFFFFF; 
+            --halo-green: #5D7052;
+            --halo-dark: #3B4636;
+            --halo-cyan: #4FD1C5;
+            --text-dark: #1A1F16;
+            --text-muted: #5D7052;
+            --glass-bg: rgba(255, 255, 255, 0.75);
+            --glass-border: rgba(79, 209, 197, 0.3);
+            --shadow-soft: 0 15px 35px rgba(0, 0, 0, 0.05);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Segoe UI', system-ui, sans-serif; }
+        body { background-color: var(--bg-cream); color: var(--text-dark); line-height: 1.6; }
+
+        /* ================= NAVEGACIÓN ================= */
+        nav {
+            width: 100%; padding: 20px 50px; display: flex; justify-content: space-between; align-items: center;
+            background: var(--bg-cream); border-bottom: 1px solid rgba(93, 112, 82, 0.1);
+        }
+        .nav-logo { display: flex; align-items: center; gap: 10px; font-weight: 900; font-size: 1.5rem; color: var(--halo-dark); text-decoration: none;}
+        .nav-logo img { height: 40px; }
+        .btn-nav { background: var(--halo-green); color: white; padding: 10px 25px; border-radius: 30px; text-decoration: none; font-weight: bold; transition: 0.3s; }
+        .btn-nav:hover { background: var(--halo-cyan); color: var(--halo-dark); transform: translateY(-2px); }
+
+        /* ================= CONTENIDO LEGAL ================= */
+        .legal-container { max-width: 800px; margin: 50px auto; padding: 40px; background: var(--bg-white); border-radius: 20px; box-shadow: var(--shadow-soft); border: 1px solid var(--glass-border); }
+        .legal-header { text-align: center; margin-bottom: 40px; border-bottom: 2px solid var(--halo-cyan); padding-bottom: 20px;}
+        .legal-header h1 { font-size: 2.5rem; color: var(--halo-dark); margin-bottom: 10px; }
+        .legal-header p { color: var(--text-muted); }
+        
+        .legal-content h2 { color: var(--halo-green); font-size: 1.5rem; margin: 30px 0 15px; }
+        .legal-content p { margin-bottom: 15px; color: var(--text-dark); }
+        .legal-content ul { margin-bottom: 20px; padding-left: 20px; color: var(--text-dark); }
+        .legal-content li { margin-bottom: 8px; }
+        .legal-content strong { color: var(--halo-dark); }
+
+        /* ================= FOOTER ================= */
+        footer { background: var(--halo-dark); color: white; text-align: center; padding: 40px 20px; margin-top: 50px; }
+        footer img { height: 40px; margin-bottom: 15px; filter: brightness(0) invert(1);}
+
+        @media (max-width: 768px) {
+            nav { padding: 15px 20px; flex-direction: column; gap: 15px; }
+            .legal-container { margin: 20px; padding: 25px; }
+            .legal-header h1 { font-size: 2rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <a href="index.html" class="nav-logo">
+            <img src="assets/logo_alpacatech.png" alt="Alpaca Tech">
+            NEXUS BLACK
+        </a>
+        <a href="index.html" class="btn-nav">← Volver al Inicio</a>
+    </nav>
+
+    <main class="legal-container">
+        <div class="legal-header">
+            <h1>Política de Privacidad</h1>
+            <p>Última actualización: Julio de 2026</p>
+        </div>
+
+        <div class="legal-content">
+            <p><strong>Alpaca Tech</strong> y su desarrollador principal, Ahirton Jizmar Esteban Ore, se comprometen a proteger su privacidad. Esta Política de Privacidad explica cómo la extensión de navegador <strong>Nexus Black</strong> recopila, utiliza y protege su información cuando interactúa con entornos virtuales de aprendizaje como Blackboard.</p>
+
+            <h2>1. Información que recopilamos</h2>
+            <p>Para proporcionar las herramientas de estudio automatizadas (Flashcards, Quizzes, Mapas Mentales y Simulador de Examen), Nexus Black recopila temporalmente los siguientes datos:</p>
+            <ul>
+                <li><strong>Contenido del documento:</strong> El texto extraído de las páginas de Blackboard activas o de los archivos PDF locales que el usuario decida arrastrar y soltar voluntariamente en la interfaz.</li>
+                <li><strong>Datos de autenticación:</strong> Correo electrónico proporcionado al crear una cuenta en el sistema para vincular su progreso.</li>
+                <li><strong>Analíticas de estudio:</strong> Estadísticas de rendimiento generadas dentro de la extensión, tales como precisión en quizzes, cantidad de flashcards volteadas y exámenes completados.</li>
+            </ul>
+
+            <h2>2. Uso de la información</h2>
+            <p>La información recopilamos se utiliza exclusivamente para los siguientes fines:</p>
+            <ul>
+                <li><strong>Procesamiento de IA:</strong> El texto extraído se envía a los servidores de Inteligencia Artificial (API de Google Gemini) únicamente para estructurar y generar el material de estudio solicitado por el usuario.</li>
+                <li><strong>Sincronización en la Nube:</strong> Las métricas de rendimiento y las Alpaca Coins se guardan de forma segura en bases de datos gestionadas mediante Supabase, permitiendo al usuario continuar su sesión en distintos dispositivos.</li>
+            </ul>
+
+            <h2>3. Divulgación de Uso Limitado (Chrome Web Store)</h2>
+            <p>El uso y la transferencia a cualquier otra aplicación de la información recibida por Nexus Black cumplirá plenamente con la <strong>Política de Datos de Usuario de Chrome Web Store</strong>, incluidos los requisitos de Uso Limitado.</p>
+            <ul>
+                <li><strong>No vendemos sus datos:</strong> Nexus Black no vende, alquila ni comercializa datos personales ni contenido de documentos a terceros.</li>
+                <li><strong>No se utiliza para publicidad:</strong> Los datos procesados no se utilizan para rastrear su comportamiento de navegación ni para mostrar anuncios personalizados.</li>
+            </ul>
+
+            <h2>4. Retención y Seguridad de los Datos</h2>
+            <p>El texto de los documentos extraídos para la generación de herramientas mediante IA se procesa en memoria y no se almacena permanentemente en nuestros servidores una vez finalizada la consulta. Los datos estadísticos alojados en Supabase están protegidos mediante protocolos de autenticación seguros y el usuario puede solicitar la eliminación de su cuenta y su historial en cualquier momento.</p>
+
+            <h2>5. Cambios en esta Política</h2>
+            <p>Nos reservamos el derecho de actualizar esta política para reflejar cambios en nuestras prácticas operativas o requisitos legales de la Chrome Web Store. Le notificaremos cualquier actualización importante a través de la interfaz de la extensión.</p>
+
+            <h2>6. Contacto</h2>
+            <p>Si tiene alguna pregunta, inquietud o solicitud sobre el manejo de sus datos, puede comunicarse directamente con el equipo de desarrollo:</p>
+            <ul>
+                <li><strong>Desarrollador:</strong> Ahirton Jizmar Esteban Ore</li>
+                <li><strong>Organización:</strong> Alpaca Tech</li>
+                <li><strong>Correo de soporte:</strong> soporte@alpacatech.com</li>
+            </ul>
+        </div>
+    </main>
+
+    <footer>
+        <img src="assets/logo_alpacatech.png" alt="Alpaca Tech Logo">
+        <h2>NEXUS BLACK</h2>
+        <p style="color: rgba(255,255,255,0.6);">Sistemas UCV Chimbote, 2026.</p>
+    </footer>
+
+</body>
+</html>
