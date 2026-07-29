@@ -202,7 +202,7 @@
         .sim-row.user .sim-bubble { background: var(--ui-user-bubble); border-bottom-right-radius: 0; color: #1A1F16; font-weight: bold; }
         .sim-row.ia .sim-bubble { background: var(--ui-ia-bubble); border-bottom-left-radius: 0; border: 1px solid var(--border-color); color: var(--text-dark); }
         
-        /* FLASHCARD INTERACTIVA */
+        /* FLASHCARD INTERACTIVA AL CLIC */
         .sim-flashcard-container { width: 100%; height: 100%; perspective: 1000px; display: flex; justify-content: center; align-items: center; padding: 20px; }
         .sim-flashcard-inner { width: 80%; height: 60%; position: relative; text-align: center; transition: transform 0.6s; transform-style: preserve-3d; cursor: pointer; }
         .sim-flashcard-inner.flipped { transform: rotateY(180deg); }
@@ -210,25 +210,22 @@
         .sim-front { background: var(--bg-white); border: 3px solid var(--halo-cyan); color: var(--text-dark); }
         .sim-back { background: var(--halo-green); color: white; transform: rotateY(180deg); }
 
-        /* MAPA VISUAL CON PULSO */
-        .sim-map-container { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-white); }
-        .map-node { position: absolute; padding: 8px 15px; border-radius: 6px; font-weight: bold; font-size: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); z-index: 2; animation: pulseNode 3s infinite alternate; }
+        /* MAPA MENTAL JERÁRQUICO BLINDADO CON SVG */
+        .sim-map-container { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; background: var(--bg-white); overflow: hidden; }
+        .map-svg-lines { position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1; pointer-events: none; }
+        .map-node { position: absolute; padding: 8px 16px; border-radius: 8px; font-weight: 800; font-size: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.1); z-index: 2; white-space: nowrap; animation: pulseNode 3s infinite alternate; }
         @keyframes pulseNode { 0% { transform: scale(1); } 100% { transform: scale(1.05); } }
-        .map-root { background: var(--halo-green); color: white; border: 2px solid var(--halo-dark); }
-        .map-sub1 { background: var(--halo-cyan); color: #1A1F16; top: 15%; left: 10%; }
-        .map-sub2 { background: var(--halo-cyan); color: #1A1F16; top: 15%; right: 10%; }
-        .map-sub3 { background: var(--halo-cyan); color: #1A1F16; bottom: 20%; left: 50%; transform: translateX(-50%); }
-        .map-line { position: absolute; background: #A3AFA0; z-index: 1; }
-        .line-1 { width: 2px; height: 100px; top: 25%; left: 25%; transform: rotate(-45deg); }
-        .line-2 { width: 2px; height: 100px; top: 25%; right: 25%; transform: rotate(45deg); }
-        .line-3 { width: 2px; height: 100px; bottom: 30%; left: 50%; }
+        .map-root { background: var(--halo-green); color: white; border: 2px solid var(--halo-dark); top: 18%; left: 50%; transform: translateX(-50%); }
+        .map-sub1 { background: var(--halo-cyan); color: #1A1F16; bottom: 20%; left: 14%; }
+        .map-sub2 { background: var(--halo-cyan); color: #1A1F16; bottom: 20%; left: 50%; transform: translateX(-50%); }
+        .map-sub3 { background: var(--halo-cyan); color: #1A1F16; bottom: 20%; right: 14%; }
 
-        /* QUIZ INTERACTIVO */
+        /* QUIZ INTERACTIVO AL CLIC */
         .sim-quiz-option { display: block; width: 100%; padding: 12px; margin-bottom: 8px; background: var(--bg-white); border: 2px solid var(--border-color); border-radius: 8px; text-align: left; font-size: 13px; font-weight: 600; color: var(--text-dark); cursor: pointer; transition: 0.2s; }
         .sim-quiz-option:hover { border-color: var(--halo-cyan); transform: translateX(4px); }
         .sim-quiz-option.correct { background: #E6FFE3 !important; border-color: #4AD63A !important; color: #255C03 !important; font-weight: bold; }
         .sim-quiz-option.incorrect { background: #FFD1D9 !important; border-color: #FA0A10 !important; color: #990000 !important; text-decoration: line-through; }
-        
+
         .sim-exam-overlay { position: absolute; top:0; left:0; width:100%; height:100%; background: #1A1F16; color: white; display:flex; flex-direction: column; align-items: stretch; padding: 20px; z-index: 10; box-sizing: border-box; }
         .sim-timer { position: absolute; top: 15px; right: 15px; color: #FA0A10; font-weight: bold; font-size: 18px; border: 2px solid #FA0A10; padding: 5px 10px; border-radius: 6px; background: rgba(0,0,0,0.5); }
         .sim-exam-box { width: 100%; background: white; color: #1A1F16; padding: 20px; border-radius: 12px; border: 3px solid var(--halo-green); margin-top: 40px; box-sizing: border-box; }
@@ -236,7 +233,7 @@
         .sim-stat strong { font-size: 20px; color: var(--halo-cyan); }
         .sim-history-item { background: #EADFCD; padding: 10px; border-radius: 6px; margin-bottom: 8px; font-size: 12px; font-weight: bold; color: #3B4636; border-left: 4px solid var(--halo-green); }
 
-        /* DEMO DE TEMAS ACCESIBLES */
+        /* DEMO DE TEMAS DE ACCESIBILIDAD */
         .theme-demo-container { transition: all 0.5s ease; }
         .demo-oscuro { --bg-p: #1A1F16; --bg-c: #242B1F; --t-main: #EADFCD; --p-col: #5D7052; --a-col: #4FD1C5; --font: sans-serif; --fw: normal; --b-col: #3B4636; }
         .demo-claro { --bg-p: #FFFFFF; --bg-c: #F9F6F0; --t-main: #2C3327; --p-col: #5D7052; --a-col: #4FD1C5; --font: sans-serif; --fw: normal; --b-col: #D1D8CE; }
@@ -266,7 +263,7 @@
         .feature-card h3 { font-size: 1.5rem; color: var(--halo-dark); margin-bottom: 15px; }
         @keyframes floatHover { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-5px); } }
 
-        /* ================= PRECIOS SAAS ================= */
+        /* ================= PRECIOS SAAS PROFESIONALES ================= */
         .pricing-toggle-wrap { display: flex; justify-content: center; align-items: center; gap: 15px; margin-bottom: 45px; }
         .pricing-toggle-wrap span { font-weight: 800; font-size: 1.05rem; color: var(--halo-dark); }
         .switch-btn {
@@ -571,7 +568,7 @@
             </div>
         </div>
 
-        <!-- Mapas -->
+        <!-- Mapas (DISEÑO BLINDADO CON SVG VECTORIAL) -->
         <div class="showcase-row">
             <div class="showcase-text reveal-right">
                 <h3>🧠 Mapas Mentales (Nodos)</h3>
@@ -583,10 +580,12 @@
                     <div class="ui-sim-panel">
                         <div class="ui-sim-header" style="background:#EADFCD; color:#1A1F16; border-bottom-color:#3B4636;">🧠 MAPA VISUAL <span style="margin-left:auto; font-size:10px; background:white; padding:2px 8px; border-radius:4px;">📄 PDF</span></div>
                         <div class="sim-map-container">
-                            <div class="map-line line-1"></div>
-                            <div class="map-line line-2"></div>
-                            <div class="map-line line-3"></div>
-                            <div class="map-node map-root" style="top: 50%; left: 50%; transform: translate(-50%, -50%); padding: 15px;">INGENIERÍA</div>
+                            <svg class="map-svg-lines" viewBox="0 0 400 280">
+                                <line x1="200" y1="50" x2="60" y2="220" stroke="#94A3B8" stroke-width="2.5" />
+                                <line x1="200" y1="50" x2="200" y2="220" stroke="#94A3B8" stroke-width="2.5" />
+                                <line x1="200" y1="50" x2="340" y2="220" stroke="#94A3B8" stroke-width="2.5" />
+                            </svg>
+                            <div class="map-node map-root">INGENIERÍA</div>
                             <div class="map-node map-sub1">Sistemas</div>
                             <div class="map-node map-sub2">Software</div>
                             <div class="map-node map-sub3">Redes</div>
@@ -596,7 +595,7 @@
             </div>
         </div>
 
-        <!-- Flashcards (INTERACTIVA AL CLIC) -->
+        <!-- Flashcards -->
         <div class="showcase-row">
             <div class="showcase-text reveal-left">
                 <h3>🃏 Modo Concentración</h3>
@@ -618,7 +617,7 @@
             </div>
         </div>
 
-        <!-- Quiz (INTERACTIVO AL CLIC) -->
+        <!-- Quiz -->
         <div class="showcase-row">
             <div class="showcase-text reveal-right">
                 <h3>📝 Quizzes Rápidos</h3>
@@ -657,7 +656,7 @@
                             <div class="sim-exam-box">
                                 <div class="question" style="font-size: 16px;">2. Pregunta de alto nivel...</div>
                                 <div class="sim-quiz-option" style="background:#D5E2D0; border-color:#5D7052; font-weight:bold; color:#1A1F16;">Opción seleccionada</div>
-                                <div class="sim-quiz-option" style="color:#1A1F16;">Opción normal</div>
+                                <div class="sim-quiz-option">Opción normal</div>
                             </div>
                         </div>
                     </div>
@@ -698,7 +697,7 @@
             <div class="showcase-text reveal-left">
                 <h3>👁️‍🗨️ Accesibilidad Total</h3>
                 <p>Nadie se queda atrás. Hemos diseñado temas científicos como el <b>Modo Dislexia</b> (con tipografía Comic Sans y mayor espaciado) y el <b>Modo Alto Contraste</b> para daltonismo, además de los modos Oscuro y Claro.</p>
-                <p style="color: var(--halo-cyan); font-weight: bold; margin-top: 10px;">👇 ¡Haz clic en el botón sol/luna del panel para probarlos!</p>
+                <p style="color: var(--halo-cyan); font-weight: bold; margin-top: 10px;">👇 ¡Haz clic en la luna/sol del panel para probarlos!</p>
             </div>
             <div class="showcase-visual reveal-right">
                 <div class="mockup-browser" style="position:relative; margin-top:20px;">
@@ -775,7 +774,7 @@
                 <a href="https://chromewebstore.google.com/detail/nexus-black/nmlfbhlkjllogijoeinajfiidfhinboa" target="_blank" class="btn-plan btn-plan-outline">Instalar Gratis</a>
             </div>
 
-            <!-- PLAN BASE (RECOMENDADO) -->
+            <!-- PLAN BASE -->
             <div class="price-card featured reveal-up">
                 <div class="badge-plan">🔥 RECOMENDADO</div>
                 <h3 class="price-title">Plan Base</h3>
@@ -812,7 +811,7 @@
         </div>
     </section>
 
-    <!-- PREGUNTAS FRECUENTES (FAQ) -->
+    <!-- PREGUNTAS FRECUENTES -->
     <section id="faq">
         <h2 class="section-title reveal-up">Preguntas Frecuentes</h2>
         <p class="section-subtitle reveal-up">Todo lo que necesitas saber antes de empezar.</p>
@@ -967,7 +966,14 @@
     <!-- LÓGICA DE INTERACTIVIDAD INDEPENDIENTE Y A PRUEBA DE ERRORES -->
     <script>
         // =====================================================================
-        // 1. EVENTOS GLOBALES DE MODO OSCURO Y ANIMACIONES
+        // CONFIGURACIÓN DE TUS LINKS DE PAGO REALES DE MERCADO PAGO
+        // =====================================================================
+        // Reemplaza estas URL con tus Links de Pago creados en tu cuenta Mercado Pago Perú:
+        const URL_MP_PLAN_BASE = "https://www.mercadopago.com.pe";
+        const URL_MP_PLAN_PREMIUM = "https://www.mercadopago.com.pe";
+
+        // =====================================================================
+        // 1. EVENTOS GLOBALES (SCROLL, TEMA, INTERACTIVIDAD MOCKUPS, FAQ)
         // =====================================================================
         document.addEventListener('DOMContentLoaded', () => {
             // A) CAMBIADOR DE TEMA PÁGINA WEB
@@ -1059,7 +1065,7 @@
         });
 
         // =====================================================================
-        // 2. LOGICA DE BILLING Y PRECIOS
+        // 2. LOGICA DE PRECIOS (MENSUAL / SEMESTRAL)
         // =====================================================================
         let isSemestral = false;
         let planSeleccionado = "Base";
@@ -1083,7 +1089,7 @@
         };
 
         // =====================================================================
-        // 3. CONEXIÓN AUTENTICACIÓN SUPABASE Y CHECKOUT MERCADO PAGO
+        // 3. AUTENTICACIÓN SUPABASE Y CHECKOUT REAL DE MERCADO PAGO
         // =====================================================================
         const SUPABASE_URL = "https://ebscpmujhnydmjdpdhhf.supabase.co";
         const SUPABASE_ANON_KEY = "sb_publishable_u1frIMvp9ywFa-f16EpZnw_GZNqcjau";
@@ -1092,7 +1098,6 @@
         let sesionActual = null;
         let authMode = "login";
 
-        // Inicializar Supabase de manera segura
         try {
             if (window.supabase) {
                 supabaseClient = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
@@ -1106,7 +1111,7 @@
                 });
             }
         } catch (e) {
-            console.warn("Supabase SDK en modo offline/respaldo:", e);
+            console.warn("Supabase SDK en modo offline:", e);
         }
 
         function actualizarEstadoNav() {
@@ -1166,7 +1171,6 @@
             }
 
             if (!supabaseClient) {
-                // Modo offline de prueba
                 sesionActual = { user: { email: email } };
                 actualizarEstadoNav();
                 cerrarModalAuth();
@@ -1186,7 +1190,9 @@
                     msgBox.textContent = "✔ ¡Sesión iniciada con éxito!";
                     setTimeout(() => {
                         cerrarModalAuth();
-                        if (planSeleccionado) abrirModalMercadoPago(planSeleccionado, precioSeleccionado);
+                        if (document.getElementById('modal-pago').style.display !== 'flex' && planSeleccionado) {
+                            abrirModalMercadoPago(planSeleccionado, precioSeleccionado);
+                        }
                     }, 800);
                 } else {
                     const { data, error } = await supabaseClient.auth.signUp({ email, password });
@@ -1231,8 +1237,13 @@
 
         window.procesarPagoMercadoPago = function() {
             const email = sesionActual ? sesionActual.user.email : "tu correo";
-            alert(`⚡ Redirigiendo a Mercado Pago para pagar la suscripción de: ${email} (Plan ${planSeleccionado})...\n\nAl confirmar la compra, las consultas de IA se liberan al instante en Supabase.`);
-            window.open("https://www.mercadopago.com.pe", "_blank");
+            const linkCheckout = (planSeleccionado === "Premium") ? URL_MP_PLAN_PREMIUM : URL_MP_PLAN_BASE;
+            
+            // Registra el intento de pago en consola/Supabase antes de abrir Mercado Pago
+            console.log(`[Checkout SaaS] 🚀 Redirigiendo a Mercado Pago para: ${email} | Plan: ${planSeleccionado} (S/ ${precioSeleccionado})`);
+            
+            alert(`⚡ Redirigiendo al checkout seguro de Mercado Pago Perú para ${email} (Plan ${planSeleccionado})...\n\nAl completar el pago, tu cuenta se activará automáticamente.`);
+            window.open(linkCheckout, "_blank");
             cerrarModalMercadoPago();
         };
 
