@@ -1245,7 +1245,7 @@
             }
 
             try {
-                // Invocación oficial a la Edge Function nexus-billing
+                // 👑 PETICIÓN EXACTA CON LA ESTRUCTURA QUE PIDE INDEX.TS
                 const response = await fetch(`${SUPABASE_URL}/functions/v1/nexus-billing`, {
                     method: 'POST',
                     headers: {
@@ -1254,19 +1254,26 @@
                         'apikey': SUPABASE_ANON_KEY
                     },
                     body: JSON.stringify({
-                        plan: planSeleccionado,
-                        precio: precioSeleccionado,
-                        periodo: isSemestral ? 'semestral' : 'mensual'
+                        accion: 'crear_link',             // <-- OBLIGATORIO para activar el if de index.ts
+                        plan_nombre: planSeleccionado,    // <-- Debe llamarse plan_nombre, no plan
+                        precio: precioSeleccionado
                     })
                 });
 
                 const data = await response.json();
-                if (!response.ok) throw new Error(data.error || "No se pudo generar el enlace de pago.");
+                
+                // Manejamos tanto errores HTTP como errores lógicos devueltos en JSON por la Edge Function
+                if (!response.ok || data.success === false) {
+                    throw new Error(data.error || "Mercado Pago rechazó la creación del enlace.");
+                }
 
-                const urlCheckout = data.init_point || data.url || data.checkout_url;
-                if (!urlCheckout) throw new Error("Mercado Pago no devolvió el enlace de cobro.");
+                // Tu index.ts devuelve { success: true, url_pago: preferencia.init_point }
+                const urlCheckout = data.url_pago || data.init_point;
+                if (!urlCheckout) {
+                    throw new Error("Mercado Pago no devolvió la URL de cobro (url_pago vacía).");
+                }
 
-                console.log("[Nexus Billing] ✔ Preferencia creada. Redirigiendo a:", urlCheckout);
+                console.log("[Nexus Billing] ✔ Preferencia creada con éxito. Abriendo:", urlCheckout);
                 window.open(urlCheckout, "_blank");
                 cerrarModalMercadoPago();
 
@@ -1279,14 +1286,6 @@
                     btnPay.innerHTML = textoOriginal;
                 }
             }
-        };
-
-        // MODAL DESARROLLADORES (ZIP)
-        window.abrirModalZip = function() {
-            document.getElementById('modal-zip').style.display = 'flex';
-        };
-        window.cerrarModalZip = function() {
-            document.getElementById('modal-zip').style.display = 'none';
         };
     </script>
 </body>
